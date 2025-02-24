@@ -1,4 +1,4 @@
-# FailUp - 失敗から学ぶ成長支援アプリケーション
+# FailUp - 失敗トラッキング
 
 ## 概要
 
@@ -139,28 +139,12 @@ heroku config:set HOST=0.0.0.0
 git push heroku main
 ```
 
-## 貢献ガイドライン
-
-1. このリポジトリをフォーク
-2. 新しいブランチを作成（`git checkout -b feature/amazing-feature`）
-3. 変更をコミット（`git commit -m 'Add amazing feature'`）
-4. ブランチをプッシュ（`git push origin feature/amazing-feature`）
-5. プルリクエストを作成
 
 ## ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。詳細は[LICENSE](LICENSE)ファイルを参照してください。
 
-## 作者
 
-- 作成者: [あなたの名前]
-- Email: [your.email@example.com]
-- Twitter: [@yourusername]
-
-## 謝辞
-
-- このプロジェクトは[参考にしたプロジェクト名]からインスピレーションを得ています
-- [使用したライブラリやツールの作者]に感謝します
 
 ## 今後の予定
 

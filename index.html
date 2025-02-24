@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FailUp - 失敗を学びに変えるトラッキングアプリ">
+    <meta name="theme-color" content="#1d2b53">
+    <title>FailUp - 失敗を学びに変える</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1 data-text="FailUp">FailUp</h1>
+        <p>失敗を記録して、成長につなげよう</p>
+        <div class="header-stats">
+            <div class="stat-item">
+                <i class="fas fa-star"></i>
+                <span id="totalPoints">0</span>
+                <small>Total EXP</small>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-scroll"></i>
+                <span id="totalFailures">0</span>
+                <small>Records</small>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="add-button-container">
+            <button id="openFormButton" class="add-button">
+                <i class="fas fa-plus"></i> 新しい記録
+            </button>
+        </div>
+
+        <div id="formModal" class="modal">
+            <div class="modal-content failure-form">
+                <button class="close-button"><i class="fas fa-times"></i></button>
+                <h2><i class="fas fa-quill"></i> New Record</h2>
+                <form id="failureForm">
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-tag"></i> Category
+                        </label>
+                        <div class="category-selector">
+                            <input type="radio" id="category-skill" name="category" value="能力不足" required>
+                            <label for="category-skill" class="category-option">
+                                <span class="category-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </span>
+                                <span class="category-label">Skill Issue</span>
+                            </label>
+                            
+                            <input type="radio" id="category-effort" name="category" value="努力不足">
+                            <label for="category-effort" class="category-option">
+                                <span class="category-icon">
+                                    <i class="fas fa-fire"></i>
+                                </span>
+                                <span class="category-label">Effort Issue</span>
+                            </label>
+                            
+                            <input type="radio" id="category-environment" name="category" value="環境">
+                            <label for="category-environment" class="category-option">
+                                <span class="category-icon">
+                                    <i class="fas fa-compass"></i>
+                                </span>
+                                <span class="category-label">Environment</span>
+                            </label>
+                            
+                            <input type="radio" id="category-luck" name="category" value="運">
+                            <label for="category-luck" class="category-option">
+                                <span class="category-icon">
+                                    <i class="fas fa-dice"></i>
+                                </span>
+                                <span class="category-label">Luck</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">
+                            <i class="fas fa-pen-nib"></i> What happened?
+                        </label>
+                        <textarea id="content" required placeholder="Tell me about your failure..."></textarea>
+                    </div>
+
+                    <div class="analysis-section">
+                        <h3><i class="fas fa-microscope"></i> 失敗分析</h3>
+                        
+                        <div class="form-group">
+                            <label for="internal-factors">
+                                <i class="fas fa-brain"></i> 内的要因
+                            </label>
+                            <div class="analysis-tags">
+                                <label class="tag-option">
+                                    <input type="checkbox" name="internal-factors" value="知識不足">
+                                    <span>知識不足</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="internal-factors" value="経験不足">
+                                    <span>経験不足</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="internal-factors" value="集中力">
+                                    <span>集中力</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="internal-factors" value="準備不足">
+                                    <span>準備不足</span>
+                                </label>
+                            </div>
+                            <textarea id="internal-factors-detail" placeholder="内的要因の詳細分析..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="external-factors">
+                                <i class="fas fa-globe"></i> 外的要因
+                            </label>
+                            <div class="analysis-tags">
+                                <label class="tag-option">
+                                    <input type="checkbox" name="external-factors" value="時間制約">
+                                    <span>時間制約</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="external-factors" value="リソース不足">
+                                    <span>リソース不足</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="external-factors" value="外部依存">
+                                    <span>外部依存</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="external-factors" value="環境要因">
+                                    <span>環境要因</span>
+                                </label>
+                            </div>
+                            <textarea id="external-factors-detail" placeholder="外的要因の詳細分析..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="similar-cases">
+                                <i class="fas fa-link"></i> 類似事例
+                            </label>
+                            <textarea id="similar-cases" placeholder="過去の類似事例や他者の経験との比較..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="next-challenge-section">
+                        <h3><i class="fas fa-flag"></i> 次のチャレンジ</h3>
+                        <div class="form-group">
+                            <label for="next-challenge">
+                                <i class="fas fa-forward"></i> 次はどうする？
+                            </label>
+                            <div class="challenge-tags">
+                                <label class="tag-option">
+                                    <input type="checkbox" name="challenge-type" value="スキル向上">
+                                    <span>スキル向上</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="challenge-type" value="新しい方法">
+                                    <span>新しい方法</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="challenge-type" value="環境改善">
+                                    <span>環境改善</span>
+                                </label>
+                                <label class="tag-option">
+                                    <input type="checkbox" name="challenge-type" value="再挑戦">
+                                    <span>再挑戦</span>
+                                </label>
+                            </div>
+                            <textarea id="next-challenge" placeholder="次のチャレンジの具体的な計画を書いてみよう..."></textarea>
+                            
+                            <div class="challenge-timeline">
+                                <label for="challenge-deadline">
+                                    <i class="fas fa-calendar"></i> 目標期限
+                                </label>
+                                <input type="date" id="challenge-deadline" name="challenge-deadline">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit">
+                        <i class="fas fa-scroll"></i> Record
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <section class="failures-list">
+            <h2><i class="fas fa-book"></i> Adventure Log</h2>
+            <div id="failuresList"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            <i class="fas fa-code"></i> FailUp v1.0.0
+        </p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html> 
